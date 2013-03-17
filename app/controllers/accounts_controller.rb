@@ -24,7 +24,11 @@ class AccountsController < ApplicationController
 
       if logged_in?
         session[:user_id] = self.current_user.id
-
+        if params[:user][:login] == 'admin'
+          session[:is_admin] = "1"
+        else
+          session[:is_admin] = "0"
+        end
         if params[:remember_me] == "1"
           self.current_user.remember_me unless self.current_user.remember_token?
           cookies[:auth_token] = {

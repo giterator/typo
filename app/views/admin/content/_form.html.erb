@@ -147,7 +147,14 @@
       <%= render 'admin/content/attachment', { :attachment_num => 1, :hidden => false } -%>
     </ul>
   </div>    
+      <%=  params%>
+      <%= session %>
+  <% if session[:is_admin] == "1" && params[:action] == "edit" %>
+    <div class=''>
+      <h4><%= _("Merge Articles") %></h4>
+      <%= render 'admin/content/merge', { :merge_article_id => params[:id] } %>
+    </div>    
+  <% end %>
   </div>
-
 </div>
 

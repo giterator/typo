@@ -32,10 +32,13 @@ class Admin::ContentController < Admin::BaseController
     @article = Article.find(params[:id])
     @article2 = Article.find(params[:merge_with])
     @article.body += @article2.body
-    Comment.find_by_article_id(params[:merge_with]) do |comment| 
-      comment.article_id = params[:id]
-      comment.save
+    @cms = Comment.find_by_article_id(params[:merge_with]) #do |commenti| 
+    if @cms != nil
+    @cms.article_id = params[:id]
+    @cms.save
     end
+#      commenti.save!
+#   end
 # Comment.connection.execute(" SET  article_id =" + params[:id] + " where article_id = " + params[:merge_with])
     
     @article.save

@@ -1,3 +1,5 @@
+<%= form_tag :controller => 'admin/content', :action => 'merge', :id => params[:id]%>
 <%= label "article_id", "Article ID" %>
-<%= text_field_tag "merge_with", params[:id] %>
-<%= submit_tag "Merge"%>
+<%= text_field_tag "merge_with" %>
+<%#=  link_to "Merge" , {:controller => 'admin/content', :action => 'merge', :id => params[:id] }, :class => 'btn info'%>
+<%= submit_tag "Merge",  :value=>'merge', :name => 'merge_btn'%>

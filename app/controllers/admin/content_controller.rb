@@ -24,7 +24,27 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def new
-    new_or_edit
+      new_or_edit
+  end
+
+  def merge
+    #Added by: Ayesha
+    @article = Article.find(params[:id])
+    @article2 = Article.find(params[:merge_with])
+    @article.body += @article2.body
+#@article.text_filter = @article2.text_filter
+@article.save
+@article2.delete
+#params[:merge_id] = params[:merge_with]
+unless @article.access_by? current_user
+      redirect_to :action => 'index'
+      flash[:error] = _("Error, you are not allowed to perform this action")
+      return
+    end
+redirect_to :action => 'index'
+#params[:id] = params[:id]  
+#  new_or_edit
+#new_or_edit
   end
 
   def edit

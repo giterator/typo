@@ -42,7 +42,7 @@ class Admin::ContentController < Admin::BaseController
 # Comment.connection.execute(" SET  article_id =" + params[:id] + " where article_id = " + params[:merge_with])
     
     @article.save
-#    @article2.delete
+    @article2.delete
     redirect_to :action => 'index'
   end
 
